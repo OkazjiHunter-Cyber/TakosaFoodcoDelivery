@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Takosa Food Co — Online Order and Delivery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #121110;
+      color: #f5f5f4;
+      overflow-x: clip;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+    /* Custom scrollbar suppression */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between selection:bg-orange-500 selection:text-white pb-16">
+
+  <!-- Background Ambient Glow -->
+  <div class="fixed inset-0 pointer-events-none z-0 flex items-center justify-center">
+    <div class="w-[800px] h-[500px] rounded-full bg-gradient-to-tr from-orange-600/15 via-amber-600/10 to-transparent blur-[120px]"></div>
+  </div>
+<!-- Balanced & Centered Takosa Logo -->
+<div class="flex justify-center pt-8 pb-2">
+  <img 
+    src="images/logo.png" 
+    alt="Takosa Food Co. Logo" 
+    class="h-25 w-auto object-contain drop-shadow-md transition-transform hover:scale-105" 
+  />
+</div>
+  <!-- Header Section -->
+  <header class="relative z-10 pt-16 md:pt-20 px-4 text-center max-w-2xl mx-auto flex flex-col items-center">
+    <div class="flex items-center gap-3 text-[10px] tracking-[0.22em] uppercase text-orange-400/80 mb-4 font-semibold">
+      <div class="w-10 h-[1px] bg-orange-500/30"></div>
+      <svg class="w-3 h-3 fill-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span>Freshly Cooked · Freshly Made</span>
+      <svg class="w-3 h-3 fill-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <div class="w-10 h-[1px] bg-orange-500/30"></div>
+    </div>
+    
+    <h1 class="font-serif text-4xl md:text-6xl tracking-tight text-stone-100 mb-3 leading-[1.08]">
+      Taste the Authentic Takoyaki of Japan.
+    </h1>
+    
+    <p class="text-sm md:text-base text-stone-400 max-w-md mx-auto leading-relaxed">
+      The Best Takoyaki of Cembo. Only here at Taguig City.
+    </p>
+  </header>
+
+  <!-- Gallery Container -->
+  <main class="relative z-10 w-full max-w-5xl mx-auto mt-6 md:mt-10 px-4 flex flex-col items-center">
+    
+    <!-- Fan Stack Viewport -->
+    <div id="fan-viewport" class="relative w-full h-[360px] md:h-[420px] flex items-center justify-center select-none cursor-grab active:cursor-grabbing touch-pan-y">
+      
+      <!-- Static Left Edge Slot (Offset -2) -->
+      <div id="slot-left" class="absolute rounded-[24px] overflow-hidden border border-stone-800 bg-stone-900 shadow-2xl transition-opacity duration-300 pointer-events-none" style="z-index: 1;">
+        <img id="slot-left-img" src="" alt="Edge Slot Left" class="w-full h-full object-cover filter brightness-90">
+        <div class="absolute inset-0 bg-black/45"></div>
+      </div>
+
+      <!-- Static Right Edge Slot (Offset +2) -->
+      <div id="slot-right" class="absolute rounded-[24px] overflow-hidden border border-stone-800 bg-stone-900 shadow-2xl transition-opacity duration-300 pointer-events-none" style="z-index: 1;">
+        <img id="slot-right-img" src="" alt="Edge Slot Right" class="w-full h-full object-cover filter brightness-90">
+        <div class="absolute inset-0 bg-black/45"></div>
+      </div>
+
+      <!-- Animated Cards Container (Injected via JS) -->
+      <div id="cards-container" class="absolute inset-0 flex items-center justify-center pointer-events-none"></div>
+
+    </div>
+
+    <!-- Product Detail Block -->
+    <div class="w-full max-w-md mt-4 md:mt-6 bg-stone-900/60 backdrop-blur-md border border-stone-800/80 rounded-3xl p-6 shadow-2xl flex flex-col items-center text-center">
+      
+      <!-- Top Metadata -->
+      <div class="flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-stone-400 mb-2 font-medium">
+        <span id="info-category">TACO KITS</span>
+        <span>·</span>
+        <span class="flex items-center gap-1 text-orange-400">
+          <svg class="w-3 h-3 fill-orange-400 inline" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span id="info-rating">4.8</span> (<span id="info-reviews">1,240</span>)
+        </span>
+      </div>
+
+      <!-- Title -->
+      <h2 id="info-title" class="font-serif text-2xl md:text-3xl text-stone-100 font-medium mb-4 min-h-[1.4em]">
+        Assorted Tako
+      </h2>
+
+      <!-- Price & Discount -->
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <span id="info-price" class="font-serif text-3xl text-stone-100 leading-none">$34.99</span>
+        <div class="flex flex-col text-left">
+          <span id="info-original" class="text-xs text-stone-500 line-through">$45.00</span>
+          <span id="info-discount" class="text-[11px] font-bold tracking-wider text-orange-500">-22% OFF</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3 w-full justify-center mb-6">
+        <button onclick="addToBag()" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white rounded-full py-3 px-6 text-xs font-semibold tracking-wider uppercase transition-all duration-200 shadow-lg shadow-orange-600/20 active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v3h2V8h6v3h2V8h2v12z"/></svg>
+          Add to Cart
+        </button>
+        <button onclick="viewDetails()" class="px-5 py-3 rounded-full border border-stone-700 hover:border-stone-500 text-stone-300 hover:text-white text-xs font-medium tracking-wide transition-all duration-200 flex items-center gap-1.5 group cursor-pointer">
+          Details 
+          <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <!-- Trust Line -->
+      <div class="flex items-center justify-center gap-3 text-[11px] text-stone-400">
+        <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> In stock</span>
+        <span>·</span>
+        <span>With Fee Delivery</span>
+        <span>·</span>
+        <span>Guaranteed fresh</span>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-stone-900 border border-orange-500/40 text-stone-100 px-5 py-3 rounded-2xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+    <div class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></div>
+    <span id="toast-msg" class="text-xs font-medium">Added to your Cart!</span>
+  </div>
+
+  <script>
+    // Product Dataset (Takosa Food Co.)
+const products = [
+      { title: "Assorted Tako", category: "TAKOYAKI", price: "P120.00", originalPrice: "P129.00", discount: "-9", rating: 4.9, reviews: 1420, image: "images/1.jpg" },
+      { title: "Takosa Signature", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9", rating: 4.8, reviews: 980, image: "images/2.jpg" },
+      { title: "Tako Chiszu", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9", rating: 4.7, reviews: 650, image: "images/3.jpg" },
+      { title: "Tako Classic", category: "TAKOYAKI", price: "P80.00", originalPrice: "P89.00", discount: "-9", rating: 4.9, reviews: 1120, image: "images/4.jpg" },
+      { title: "Flossy Tako", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9", rating: 4.6, reviews: 430, image: "images/5.jpg" },
+      { title: "SUMO TAKO - Katsu", category: "RICEMEAL", price: "P173.00", originalPrice: "P175.00", discount: "-2", rating: 4.9, reviews: 1590, image: "images/6.jpg" },
+      { title: "Okinawa Cheesecake", category: "CHEESECAKE MILKTEA", price: "P80.00", originalPrice: "P89.00", discount: "-9", rating: 4.8, reviews: 810, image: "images/7.jpg" },
+      { title: "Assorted Tako", category: "TAKOYAKI", price: "P120.00", originalPrice: "P129.00", discount: "-9", rating: 4.9, reviews: 2100, image: "images/1.jpg" }
+    ];   
+
+    const N = products.length;
+    let cardSize = 260;
+    const cardAspect = 1.2;
+    const cardRadius = 24;
+    const fanRotation = 5;
+    const fanSpread = 0.42;
+    const scaleStep = 0.22;
+    const edgeSlot = 2;
+    const ghostRange = 1.0;
+
+    // Physics state
+    let scrollPos = 0;
+    let velocity = 0;
+    let isDragging = false;
+    let startX = 0, lastX = 0, lastTime = 0;
+    let isEntering = true;
+    let cardEntrance = new Array(N).fill(0);
+
+    const friction = 0.92;
+    const snapSpring = 0.08;
+    const snapDamping = 0.75;
+    const dragSensitivity = 0.004;
+
+    function getCardSize() {
+      const vw = window.innerWidth;
+      if (vw < 480) return 180;
+      if (vw < 640) return 210;
+      if (vw < 768) return 240;
+      if (vw < 1024) return 260;
+      return 280;
+    }
+
+    const cardsContainer = document.getElementById('cards-container');
+    const slotLeft = document.getElementById('slot-left');
+    const slotRight = document.getElementById('slot-right');
+    const slotLeftImg = document.getElementById('slot-left-img');
+    const slotRightImg = document.getElementById('slot-right-img');
+
+    // Build DOM elements for cards
+    const cardEls = products.map((prod, i) => {
+      const el = document.createElement('div');
+      el.className = 'absolute will-change-transform';
+      el.style.width = cardSize + 'px';
+      el.style.height = (cardSize * cardAspect) + 'px';
+      el.style.marginLeft = (-cardSize / 2) + 'px';
+      el.style.marginTop = (-(cardSize * cardAspect) / 2) + 'px';
+      el.style.left = '50%';
+      el.style.top = '50%';
+
+      el.innerHTML = `
+        <!-- Image Layer -->
+        <div data-image class="absolute inset-0 overflow-hidden rounded-[24px] shadow-2xl bg-stone-900 border border-stone-800 transition-opacity duration-150">
+          <img src="${prod.image}" alt="${prod.title}" class="w-full h-full object-cover filter brightness-95">
+          <div data-overlay class="absolute inset-0 bg-black opacity-0 transition-opacity duration-150"></div>
+          <div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[24px]"></div>
+        </div>
+        <!-- Ghost Border Outline -->
+        <div data-ghost class="absolute inset-0 rounded-[24px] border border-stone-700/40 bg-transparent opacity-0 pointer-events-none"></div>
+        <!-- Center Accent Border -->
+        <div data-border class="absolute inset-0 rounded-[24px] border-[2.5px] border-orange-500 opacity-0 pointer-events-none shadow-[0_0_20px_rgba(249,115,22,0.3)]"></div>
+        <!-- Drop Shadow Layer -->
+        <div data-shadow class="absolute inset-0 rounded-[24px] -z-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"></div>
+      `;
+      cardsContainer.appendChild(el);
+      return el;
+    });
+
+    // Entrance Animation Simulation via JS
+    function startEntrance() {
+      let startTime = performance.now();
+      function animateEntrance(now) {
+        let elapsed = (now - startTime) / 1000;
+        // Center card enters first (0.3s to 1.0s), sides staggered
+        for (let i = 0; i < N; i++) {
+          let offsetFromCenter = Math.abs(i);
+          let delay = 0.3 + (offsetFromCenter === 0 ? 0 : 0.4 + (offsetFromCenter - 1) * 0.07);
+          let duration = 0.75;
+          let progress = Math.max(0, Math.min(1, (elapsed - delay) / duration));
+          // easeOutExpo
+          let eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+          cardEntrance[i] = eased;
+        }
+        if (elapsed > 1.4) {
+          isEntering = false;
+        } else {
+          requestAnimationFrame(animateEntrance);
+        }
+      }
+      requestAnimationFrame(animateEntrance);
+    }
+
+    function wrapIndex(idx) {
+      return ((idx % N) + N) % N;
+    }
+
+    let lastCentered = -1;
+
+    function updateLayout() {
+      cardSize = getCardSize();
+      const spread = cardSize * fanSpread;
+      const edgeScale = Math.max(0.5, 1 - edgeSlot * scaleStep);
+      const edgeWidth = cardSize * edgeScale;
+      const edgeHeight = cardSize * cardAspect * edgeScale;
+      const edgeRadius = cardRadius * edgeScale;
+      const edgeRotation = fanRotation * edgeSlot;
+
+      // Position static edge slots
+      [slotLeft, slotRight].forEach((slot, sIdx) => {
+        const sign = sIdx === 0 ? -1 : 1;
+        slot.style.width = edgeWidth + 'px';
+        slot.style.height = edgeHeight + 'px';
+        slot.style.marginLeft = (-edgeWidth / 2) + 'px';
+        slot.style.marginTop = (-edgeHeight / 2) + 'px';
+        slot.style.transform = `translate3d(${sign * edgeSlot * spread}px, 0, 0) rotate(${sign * edgeRotation}deg)`;
+        slot.style.borderRadius = edgeRadius + 'px';
+      });
+
+      // Swap slot images based on floor/ceil asymmetric boundaries
+      const leftIdx = wrapIndex(Math.floor(scrollPos) - edgeSlot);
+      const rightIdx = wrapIndex(Math.ceil(scrollPos) + edgeSlot);
+      slotLeftImg.src = products[leftIdx].image;
+      slotRightImg.src = products[rightIdx].image;
+
+      // Update animated cards
+      const currentCentered = wrapIndex(Math.round(scrollPos));
+      if (currentCentered !== lastCentered) {
+        lastCentered = currentCentered;
+        updateInfoBlock(currentCentered);
+      }
+
+      for (let i = 0; i < N; i++) {
+        const card = cardEls[i];
+        card.style.width = cardSize + 'px';
+        card.style.height = (cardSize * cardAspect) + 'px';
+        card.style.marginLeft = (-cardSize / 2) + 'px';
+        card.style.marginTop = (-(cardSize * cardAspect) / 2) + 'px';
+
+        let offset = i - scrollPos;
+        while (offset > N / 2) offset -= N;
+        while (offset < -N / 2) offset += N;
+        const absOffset = Math.abs(offset);
+
+        const entrance = cardEntrance[i] ?? (isEntering ? 0 : 1);
+        const tx = offset * spread * entrance;
+        const rotation = offset * fanRotation * entrance;
+        const targetScale = Math.max(0.4, 1 - absOffset * scaleStep);
+        const scale = 0.3 + (targetScale - 0.3) * entrance;
+
+        card.style.transform = `translate3d(${tx}px, 0px, 0) rotate(${rotation}deg) scale(${scale})`;
+
+        const isGhost = !isEntering && absOffset >= edgeSlot;
+        const ghostOpacity = isGhost ? Math.max(0, 1 - (absOffset - edgeSlot) / ghostRange) : 1;
+        
+        // Visibility cutoff during load vs runtime
+        if (isEntering && absOffset > edgeSlot) {
+          card.style.opacity = '0';
+        } else if (!isEntering && absOffset > edgeSlot + ghostRange) {
+          card.style.opacity = '0';
+        } else {
+          card.style.opacity = `${ghostOpacity * entrance}`;
+        }
+
+        card.style.zIndex = isGhost ? 0 : Math.round((edgeSlot + 1 - absOffset) * 10);
+
+        // Sublayers
+        const imgLayer = card.querySelector('[data-image]');
+        const ghostLayer = card.querySelector('[data-ghost]');
+        const borderLayer = card.querySelector('[data-border]');
+        const shadowLayer = card.querySelector('[data-shadow]');
+        const overlayLayer = card.querySelector('[data-overlay]');
+
+        imgLayer.style.opacity = isGhost ? '0' : '1';
+        shadowLayer.style.opacity = isGhost ? '0' : '1';
+        ghostLayer.style.opacity = isGhost ? `${ghostOpacity}` : '0';
+
+        const maxOverlay = 0.45;
+        const overlayOp = Math.min(maxOverlay, (absOffset / edgeSlot) * maxOverlay);
+        overlayLayer.style.opacity = isGhost ? '0' : `${overlayOp}`;
+
+        const borderOpacity = isGhost ? 0 : Math.max(0, 1 - absOffset * 2.5);
+        borderLayer.style.opacity = `${borderOpacity}`;
+      }
+    }
+
+    function updateInfoBlock(idx) {
+      const p = products[idx];
+      document.getElementById('info-category').textContent = p.category;
+      document.getElementById('info-rating').textContent = p.rating;
+      document.getElementById('info-reviews').textContent = p.reviews.toLocaleString();
+      document.getElementById('info-title').textContent = p.title;
+      document.getElementById('info-price').textContent = p.price;
+      document.getElementById('info-original').textContent = p.originalPrice;
+      document.getElementById('info-discount').textContent = p.discount + ' OFF';
+    }
+
+    // Animation & Physics Loop
+    function physicsLoop() {
+      if (!isDragging) {
+        scrollPos += velocity;
+        velocity *= friction;
+
+        if (Math.abs(velocity) < 0.15) {
+          const nearest = Math.round(scrollPos);
+          const diff = nearest - scrollPos;
+          velocity += diff * snapSpring;
+          velocity *= snapDamping;
+        }
+
+        if (Math.abs(velocity) < 0.0005) {
+          velocity = 0;
+          const nearest = Math.round(scrollPos);
+          if (Math.abs(nearest - scrollPos) < 0.01) {
+            scrollPos = nearest;
+          }
+        }
+      }
+
+      // Normalize scrollPos within [0, N)
+      scrollPos = ((scrollPos % N) + N) % N;
+
+      updateLayout();
+      requestAnimationFrame(physicsLoop);
+    }
+
+    // Mouse & Touch Drag Handlers
+    const viewport = document.getElementById('fan-viewport');
+
+    function onPointerDown(e) {
+      isDragging = true;
+      startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+      lastX = startX;
+      lastTime = performance.now();
+      velocity = 0;
+    }
+
+    function onPointerMove(e) {
+      if (!isDragging) return;
+      const currentX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+      const currentTime = performance.now();
+      const dx = currentX - lastX;
+      const dt = currentTime - lastTime || 16;
+
+      scrollPos -= dx * dragSensitivity;
+      velocity = (-dx * dragSensitivity / dt) * 16;
+
+      lastX = currentX;
+      lastTime = currentTime;
+    }
+
+    function onPointerUp() {
+      if (!isDragging) return;
+      isDragging = false;
+      velocity *= 1.1; // release boost
+    }
+
+    viewport.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+
+    viewport.addEventListener('touchstart', onPointerDown, { passive: true });
+    window.addEventListener('touchmove', onPointerMove, { passive: true });
+    window.addEventListener('touchend', onPointerUp);
+
+    // Wheel Handler
+    viewport.addEventListener('wheel', (e) => {
+      const absX = Math.abs(e.deltaX);
+      const absY = Math.abs(e.deltaY);
+      const delta = absX > absY ? e.deltaX : e.deltaY;
+      if (Math.abs(delta) > 2) {
+        e.preventDefault();
+        scrollPos += delta * 0.003;
+        velocity = delta * 0.001;
+      }
+    }, { passive: false });
+
+    // Actions
+function addToBag() {
+      // Get the currently centered product item
+      const currentIdx = wrapIndex(Math.round(scrollPos));
+      const p = products[currentIdx];
+      
+      // Create the order text message
+      const orderMessage = `Hello Takosa Food Co.! I would like to order:\n- Item: ${p.title}\n- Category: ${p.category}\n- Price: ${p.price}`;
+      const encodedMsg = encodeURIComponent(orderMessage);
+
+      // --- CHOOSE YOUR PLATFORM BELOW ---
+
+      // Option A: Telegram (Replace 'your_telegram_username' with your actual Telegram handle)
+      const telegramUser = "czessh20"; 
+      window.location.href = `https://t.me/czessh20?text=${encodedMsg}`;
+
+      // Option B: Facebook Messenger (Uncomment the line below and put your FB page name instead)
+      // window.location.href = `https://m.me/285742292084459`;
+    }  
+
+function viewDetails() {
+      const pageUrl = "https://www.facebook.com/285742292084459";
+      window.open(pageUrl, '_blank');
+    }    // Initialize
+    window.addEventListener('resize', updateLayout);
+    startEntrance();
+    requestAnimationFrame(physicsLoop);
+  </script>
+<!-- Business Opportunities Banner -->
+<div style="background: rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 16px 24px; text-align: center; margin-top: 24px; border-radius: 12px; backdrop-filter: blur(10px);">
+  <p style="color: #f97316; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px;">
+    BUSINESS OPPORTUNITIES
+  </p>
+  <p style="color: #e5e7eb; font-size: 0.95rem; font-weight: 400; max-width: 600px; margin: 0 auto;">
+    We are also offering <strong style="color: #ffffff;">Online Seminar, Modules, and Business Packages</strong> for aspiring business owners!
+  </p>
+</div>
+</body>
+</html>
