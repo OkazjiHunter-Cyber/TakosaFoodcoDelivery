@@ -156,6 +156,26 @@
       </div>
 
     </div>
+
+    <!-- Video Player Section -->
+    <div class="mt-8 bg-black/70 border border-yellow-500/30 p-4 rounded-2xl backdrop-blur-md shadow-2xl overflow-hidden">
+      <h3 class="text-yellow-400 font-serif text-center text-xl font-medium mb-3">
+        See Our Training & Franchise Business Packages
+      </h3>
+      <div class="relative w-full rounded-xl overflow-hidden aspect-video bg-stone-900 border border-stone-800">
+        <video controls class="w-full h-full object-cover rounded-xl" poster="images/a.jpg">
+          <source src="images/businessopportunities.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <!-- Bottom Italic / Handwritten Signoff Phrase -->
+    <div class="mt-8 mb-4 text-center">
+      <p class="font-serif italic text-yellow-200/80 text-sm md:text-base tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+        "Make your dream possible with Takosa Food Co & Teavanna Training & Supplies"
+      </p>
+    </div>
   </footer>
 
   <!-- Product Detail Modal -->
@@ -239,16 +259,16 @@
   <script>
     // Product Dataset
     const products = [
-      { id: 0, title: "Assorted Tako", category: "TAKOYAKI", price: "P120.00", originalPrice: "P129.00", discount: "-9 OFF", rating: 4.9, reviews: 1420, image: "images/1.jpg", description: "Our bestselling assortment of freshly cooked takoyaki with diverse savory toppings and rich fillings." },
-      { id: 1, title: "Takosa Signature", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.8, reviews: 980, image: "images/2.jpg", description: "The signature recipe crafted with authentic Japanese broth, tender octopus filling, and special house sauce." },
-      { id: 2, title: "Tako Chiszu", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.7, reviews: 650, image: "images/3.jpg", description: "Melted cheese layered over piping hot takoyaki balls for an irresistible creamy and savory bite." },
-      { id: 3, title: "Tako Classic", category: "TAKOYAKI", price: "P80.00", originalPrice: "P89.00", discount: "-9 OFF", rating: 4.9, reviews: 1120, image: "images/4.jpg", description: "Traditional Cembo-style classic takoyaki sprinkled generously with dancing bonito flakes and aonori." },
-      { id: 4, title: "Flossy Tako", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.6, reviews: 430, image: "images/5.jpg", description: "Crunchy and savory pork/chicken floss blanketed over hot takoyaki drizzled with Japanese kewpie mayo." },
-      { id: 5, title: "SUMO TAKO - Katsu", category: "RICEMEAL", price: "P173.00", originalPrice: "P175.00", discount: "-2 OFF", rating: 4.9, reviews: 1590, image: "images/6.jpg", description: "Hearty Japanese katsu rice meal paired with our signature dressings. Perfect for big appetites." },
-      { id: 6, title: "Okinawa Cheesecake", category: "MILKTEA", price: "P80.00", originalPrice: "P89.00", discount: "-9 OFF", rating: 4.8, reviews: 810, image: "images/7.jpg", description: "Rich Okinawa brown sugar milk tea topped with velvety cheesecake cream. Sweet and refreshing." },
-      { id: 7, title: "Assorted Tako", category: "TAKOYAKI", price: "P120.00", originalPrice: "P129.00", discount: "-9 OFF", rating: 4.9, reviews: 2100, image: "images/1.jpg", description: "Our bestselling assortment of freshly cooked takoyaki with diverse savory toppings and rich fillings." },
-      { id: 8, title: "Takosa Signature", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.8, reviews: 980, image: "images/2.jpg", description: "The signature recipe crafted with authentic Japanese broth, tender filling, and special house sauce." },
-      { id: 9, title: "Tako Chiszu", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.7, reviews: 650, image: "images/3.jpg", description: "Melted cheese layered over piping hot takoyaki balls for an irresistible creamy and savory bite." }
+      { id: 0, title: "Assorted Tako", category: "TAKOYAKI", price: "P129.00", originalPrice: "P129.00", discount: "-9 OFF", rating: 4.9, reviews: 1420, image: "images/1.jpg", description: "Our bestselling assortment of freshly cooked takoyaki with diverse savory toppings and rich fillings." },
+      { id: 1, title: "Takosa Signature", category: "TAKOYAKI", price: "P119.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.8, reviews: 980, image: "images/2.jpg", description: "The signature recipe crafted with authentic Japanese broth, tender octopus filling, and special house sauce." },
+      { id: 2, title: "Tako Chiszu", category: "TAKOYAKI", price: "P119.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.7, reviews: 650, image: "images/3.jpg", description: "Melted cheese layered over piping hot takoyaki balls for an irresistible creamy and savory bite." },
+      { id: 3, title: "Tako Classic", category: "TAKOYAKI", price: "P89.00", originalPrice: "P89.00", discount: "-9 OFF", rating: 4.9, reviews: 1120, image: "images/4.jpg", description: "Traditional Cembo-style classic takoyaki sprinkled generously with dancing bonito flakes and aonori." },
+      { id: 4, title: "Flossy Tako", category: "TAKOYAKI", price: "P119.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.6, reviews: 430, image: "images/5.jpg", description: "Crunchy and savory pork/chicken floss blanketed over hot takoyaki drizzled with Japanese kewpie mayo." },
+      { id: 5, title: "SUMO TAKO - Katsu", category: "RICEMEAL", price: "P175.00", originalPrice: "P175.00", discount: "-2 OFF", rating: 4.9, reviews: 1590, image: "images/6.jpg", description: "Hearty Japanese katsu rice meal paired with our signature dressings. Perfect for big appetites." },
+      { id: 6, title: "Okinawa Cheesecake", category: "MILKTEA", price: "P89.00", originalPrice: "P89.00", discount: "-9 OFF", rating: 4.8, reviews: 810, image: "images/7.jpg", description: "Rich Okinawa brown sugar milk tea topped with velvety cheesecake cream. Sweet and refreshing." },
+      { id: 7, title: "Assorted Tako", category: "TAKOYAKI", price: "P129.00", originalPrice: "P129.00", discount: "-9 OFF", rating: 4.9, reviews: 2100, image: "images/1.jpg", description: "Our bestselling assortment of freshly cooked takoyaki with diverse savory toppings and rich fillings." },
+      { id: 8, title: "Takosa Signature", category: "TAKOYAKI", price: "P119.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.8, reviews: 980, image: "images/2.jpg", description: "The signature recipe crafted with authentic Japanese broth, tender filling, and special house sauce." },
+      { id: 9, title: "Tako Chiszu", category: "TAKOYAKI", price: "P119.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.7, reviews: 650, image: "images/3.jpg", description: "Melted cheese layered over piping hot takoyaki balls for an irresistible creamy and savory bite." }
     ];
 
     const N = products.length;
