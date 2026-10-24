@@ -3,350 +3,329 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Takosa Food Co — Online Order and Delivery</title>
+  <title>Takosa Food Co — Authentic Takoyaki & Online Delivery</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #121110;
+      background-color: #120e0a;
       color: #f5f5f4;
       overflow-x: clip;
     }
     .font-serif {
       font-family: 'Playfair Display', serif;
     }
-    /* Custom scrollbar suppression */
     ::-webkit-scrollbar {
       display: none;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-between selection:bg-orange-500 selection:text-white pb-16">
+<body class="min-h-screen flex flex-col justify-between selection:bg-yellow-400 selection:text-black pb-24">
 
-  <!-- Background Ambient Glow -->
-  <div class="fixed inset-0 pointer-events-none z-0 flex items-center justify-center">
-    <div class="w-[800px] h-[500px] rounded-full bg-gradient-to-tr from-orange-600/15 via-amber-600/10 to-transparent blur-[120px]"></div>
+  <!-- Single Fixed Full-Bleed Background (Uploaded Image) -->
+  <div class="fixed inset-0 pointer-events-none z-0 bg-cover bg-center bg-fixed" style="background-image: url('862744509_1797128568074428_1569969873123908691_n.jpg');"></div>
+  <!-- Ambient Dark Glow Overlay for Text Contrast -->
+  <div class="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-black/85 via-black/70 to-black/90 backdrop-blur-[2px]"></div>
+
+  <!-- Top Brand Navigation / Logo -->
+  <div class="relative z-10 flex justify-center pt-6 pb-2">
+    <img 
+      src="images/Logo.png" 
+      alt="Takosa Food Co. Logo" 
+      class="h-20 w-auto object-contain drop-shadow-[0_0_15px_rgba(250,204,21,0.3)] transition-transform hover:scale-105" 
+    />
   </div>
-<!-- Balanced & Centered Takosa Logo -->
-<div class="flex justify-center pt-8 pb-2">
-  <img 
-    src="images/logo.png" 
-    alt="Takosa Food Co. Logo" 
-    class="h-25 w-auto object-contain drop-shadow-md transition-transform hover:scale-105" 
-  />
-</div>
-  <!-- Header Section -->
-  <header class="relative z-10 pt-16 md:pt-20 px-4 text-center max-w-2xl mx-auto flex flex-col items-center">
-    <div class="flex items-center gap-3 text-[10px] tracking-[0.22em] uppercase text-orange-400/80 mb-4 font-semibold">
-      <div class="w-10 h-[1px] bg-orange-500/30"></div>
-      <svg class="w-3 h-3 fill-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <span>Freshly Cooked · Freshly Made</span>
-      <svg class="w-3 h-3 fill-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      <div class="w-10 h-[1px] bg-orange-500/30"></div>
+
+  <!-- Editorial Hero Section -->
+  <header class="relative z-10 pt-6 md:pt-10 px-4 text-center max-w-3xl mx-auto flex flex-col items-center pointer-events-none">
+    
+    <!-- Editorial Collection Marker -->
+    <div data-reveal class="flex items-center gap-3 text-[11px] tracking-[0.28em] uppercase text-yellow-400 mb-3 font-semibold pointer-events-auto">
+      <div class="w-6 h-[1px] bg-yellow-400/50"></div>
+      <span class="font-serif italic text-xs text-yellow-200">nº 01</span>
+      <div class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]"></div>
+      <span>SS 26 · CEMBO SPECIALTIES</span>
+      <div class="w-6 h-[1px] bg-yellow-400/50"></div>
     </div>
     
-    <h1 class="font-serif text-4xl md:text-6xl tracking-tight text-stone-100 mb-3 leading-[1.08]">
-      Taste the Authentic Takoyaki of Japan.
+    <!-- Editorial Title -->
+    <h1 data-reveal class="font-serif text-3xl md:text-5xl tracking-tight text-white mb-3 leading-[1.08]">
+      Taste the authentic <span class="italic text-yellow-400 font-normal">Takoyaki</span> of Japan.
     </h1>
     
-    <p class="text-sm md:text-base text-stone-400 max-w-md mx-auto leading-relaxed">
-      The Best Takoyaki of Cembo. Only here at Taguig City.
+    <!-- Subtitle with Facebook Follow Offer -->
+    <p data-reveal class="text-xs md:text-sm text-stone-300 max-w-xl mx-auto leading-relaxed pointer-events-auto">
+      The best takoyaki in Cembo, Taguig City. Freshly cooked, freshly made. <span class="font-semibold text-yellow-400">Follow our Facebook Page to get a free 16oz Cheesecake milktea!</span>
     </p>
+
+    <!-- Frosted Order Input Pill -->
+    <div data-reveal class="mt-5 pointer-events-auto">
+      <form onsubmit="handleOrderSubmit(event)" class="flex items-center gap-2 pr-1.5 pl-5 h-[48px] rounded-full bg-black/50 backdrop-blur-xl border border-yellow-500/30 shadow-[0_0_25px_rgba(234,179,8,0.15)]">
+        <svg class="w-4 h-4 text-yellow-400 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>
+        <input type="text" id="order-input" required placeholder="Whats your order?" class="flex-1 bg-transparent text-[12px] text-white placeholder-stone-400 outline-none w-48 md:w-60">
+        <button type="submit" class="h-9 px-4 rounded-full bg-yellow-400 hover:bg-yellow-300 text-black text-[11px] font-bold tracking-wide transition-all duration-300 flex items-center gap-1.5 group cursor-pointer shadow-lg shadow-yellow-500/20 shrink-0">
+          <span>Order Now</span>
+          <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </form>
+      <div class="mt-2 text-[10px] tracking-[0.2em] uppercase text-stone-400">
+        Order online · We deliver · with Affordable Delivery fee
+      </div>
+    </div>
   </header>
 
-  <!-- Gallery Container -->
-  <main class="relative z-10 w-full max-w-5xl mx-auto mt-6 md:mt-10 px-4 flex flex-col items-center">
-    
-    <!-- Fan Stack Viewport -->
-    <div id="fan-viewport" class="relative w-full h-[360px] md:h-[420px] flex items-center justify-center select-none cursor-grab active:cursor-grabbing touch-pan-y">
-      
-      <!-- Static Left Edge Slot (Offset -2) -->
-      <div id="slot-left" class="absolute rounded-[24px] overflow-hidden border border-stone-800 bg-stone-900 shadow-2xl transition-opacity duration-300 pointer-events-none" style="z-index: 1;">
-        <img id="slot-left-img" src="" alt="Edge Slot Left" class="w-full h-full object-cover filter brightness-90">
-        <div class="absolute inset-0 bg-black/45"></div>
-      </div>
+  <!-- Quick Contact Order Bar (Telegram & Messenger) -->
+  <div class="relative z-20 flex justify-center items-center gap-3 mt-6 px-4">
+    <a href="https://t.me/czessh20" target="_blank" class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/40 text-sky-200 text-xs font-semibold tracking-wide transition-all duration-300 shadow-lg backdrop-blur-md hover:scale-105">
+      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.05.13.83.99z"/></svg>
+      Message Telegram
+    </a>
+    <a href="https://m.me/285742292084459" target="_blank" class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600/20 hover:bg-blue-600/30 border border-blue-400/40 text-blue-200 text-xs font-semibold tracking-wide transition-all duration-300 shadow-lg backdrop-blur-md hover:scale-105">
+      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.082.3 2.23.464 3.443.464 6.627 0 12-4.975 12-11.111C24 4.974 18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26 6.559-6.963 3.13 3.259 5.889-3.259-6.56 6.964z"/></svg>
+      Message Messenger
+    </a>
+  </div>
 
-      <!-- Static Right Edge Slot (Offset +2) -->
-      <div id="slot-right" class="absolute rounded-[24px] overflow-hidden border border-stone-800 bg-stone-900 shadow-2xl transition-opacity duration-300 pointer-events-none" style="z-index: 1;">
-        <img id="slot-right-img" src="" alt="Edge Slot Right" class="w-full h-full object-cover filter brightness-90">
-        <div class="absolute inset-0 bg-black/45"></div>
-      </div>
-
-      <!-- Animated Cards Container (Injected via JS) -->
+  <!-- Infinite 3D Momentum Carousel Section -->
+  <main class="relative z-10 w-full max-w-7xl mx-auto mt-12 md:mt-16 px-4 flex flex-col items-center">
+    <div id="carousel-viewport" class="relative w-full h-[380px] md:h-[450px] flex items-center justify-center select-none cursor-grab active:cursor-grabbing touch-pan-y" style="perspective: 1200px; perspective-origin: 50% 45%;">
       <div id="cards-container" class="absolute inset-0 flex items-center justify-center pointer-events-none"></div>
-
     </div>
 
-    <!-- Product Detail Block -->
-    <div class="w-full max-w-md mt-4 md:mt-6 bg-stone-900/60 backdrop-blur-md border border-stone-800/80 rounded-3xl p-6 shadow-2xl flex flex-col items-center text-center">
+    <!-- Opening Hours / Mood Phrase under Carousel -->
+    <div class="mt-4 text-center">
+      <p class="font-serif text-lg md:text-xl text-yellow-300 font-medium tracking-wide drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+        Good Food, Good Mood! Open daily 3pm to 12am
+      </p>
+    </div>
+  </main>
+
+  <!-- Business Opportunities Section -->
+  <footer class="relative z-10 max-w-4xl mx-auto px-4 mt-12 w-full">
+    <div class="bg-black/70 border border-yellow-500/30 p-6 text-center rounded-2xl backdrop-blur-md shadow-2xl mb-6">
+      <p class="text-yellow-400 font-semibold text-xs tracking-widest uppercase mb-1">
+        BUSINESS OPPORTUNITIES
+      </p>
+      <p class="text-stone-300 text-sm md:text-base">
+        We offer <strong class="text-white">Online Seminars, Modules, and Business Packages</strong> for aspiring business owners!
+      </p>
+    </div>
+
+    <!-- 3 Clickable Photo Cards for Opportunities -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       
-      <!-- Top Metadata -->
-      <div class="flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-stone-400 mb-2 font-medium">
-        <span id="info-category">TACO KITS</span>
-        <span>·</span>
-        <span class="flex items-center gap-1 text-orange-400">
-          <svg class="w-3 h-3 fill-orange-400 inline" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <span id="info-rating">4.8</span> (<span id="info-reviews">1,240</span>)
-        </span>
-      </div>
-
-      <!-- Title -->
-      <h2 id="info-title" class="font-serif text-2xl md:text-3xl text-stone-100 font-medium mb-4 min-h-[1.4em]">
-        Assorted Tako
-      </h2>
-
-      <!-- Price & Discount -->
-      <div class="flex items-center justify-center gap-4 mb-6">
-        <span id="info-price" class="font-serif text-3xl text-stone-100 leading-none">$34.99</span>
-        <div class="flex flex-col text-left">
-          <span id="info-original" class="text-xs text-stone-500 line-through">$45.00</span>
-          <span id="info-discount" class="text-[11px] font-bold tracking-wider text-orange-500">-22% OFF</span>
+      <!-- Card 1: Online Seminars -->
+      <div onclick="inquireOpportunity('Online Seminar')" class="group relative rounded-2xl overflow-hidden border border-yellow-500/30 bg-stone-900 cursor-pointer h-48 shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-yellow-400">
+        <img src="images/6.jpg" alt="Online Seminars" class="w-full h-full object-cover brightness-75 group-hover:brightness-90 group-hover:scale-105 transition-all duration-500">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div class="absolute bottom-3 left-3 right-3 text-left">
+          <span class="text-[10px] tracking-widest uppercase text-yellow-400 font-bold">LIVESTREAM & ZOOM</span>
+          <h4 class="font-serif text-base text-white font-medium">Online Seminars</h4>
+          <p class="text-[11px] text-stone-300 mt-0.5">Click to inquire via Telegram/Messenger →</p>
         </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-3 w-full justify-center mb-6">
-        <button onclick="addToBag()" class="flex-1 bg-orange-500 hover:bg-orange-600 text-white rounded-full py-3 px-6 text-xs font-semibold tracking-wider uppercase transition-all duration-200 shadow-lg shadow-orange-600/20 active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h2v3h2V8h6v3h2V8h2v12z"/></svg>
-          Add to Cart
-        </button>
-        <button onclick="viewDetails()" class="px-5 py-3 rounded-full border border-stone-700 hover:border-stone-500 text-stone-300 hover:text-white text-xs font-medium tracking-wide transition-all duration-200 flex items-center gap-1.5 group cursor-pointer">
-          Details 
-          <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-        </button>
+      <!-- Card 2: Training Modules -->
+      <div onclick="inquireOpportunity('Business Modules')" class="group relative rounded-2xl overflow-hidden border border-yellow-500/30 bg-stone-900 cursor-pointer h-48 shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-yellow-400">
+        <img src="images/2.jpg" alt="Training Modules" class="w-full h-full object-cover brightness-75 group-hover:brightness-90 group-hover:scale-105 transition-all duration-500">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div class="absolute bottom-3 left-3 right-3 text-left">
+          <span class="text-[10px] tracking-widest uppercase text-yellow-400 font-bold">RECIPES & GUIDES</span>
+          <h4 class="font-serif text-base text-white font-medium">Business Modules</h4>
+          <p class="text-[11px] text-stone-300 mt-0.5">Click to inquire via Telegram/Messenger →</p>
+        </div>
       </div>
 
-      <!-- Trust Line -->
-      <div class="flex items-center justify-center gap-3 text-[11px] text-stone-400">
-        <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> In stock</span>
-        <span>·</span>
-        <span>With Fee Delivery</span>
-        <span>·</span>
-        <span>Guaranteed fresh</span>
+      <!-- Card 3: Business Packages -->
+      <div onclick="inquireOpportunity('Complete Business Package')" class="group relative rounded-2xl overflow-hidden border border-yellow-500/30 bg-stone-900 cursor-pointer h-48 shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-yellow-400">
+        <img src="images/1.jpg" alt="Business Packages" class="w-full h-full object-cover brightness-75 group-hover:brightness-90 group-hover:scale-105 transition-all duration-500">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div class="absolute bottom-3 left-3 right-3 text-left">
+          <span class="text-[10px] tracking-widest uppercase text-yellow-400 font-bold">FULL SETUP & EQUIPMENT</span>
+          <h4 class="font-serif text-base text-white font-medium">Franchise Packages</h4>
+          <p class="text-[11px] text-stone-300 mt-0.5">Click to inquire via Telegram/Messenger →</p>
+        </div>
       </div>
 
     </div>
+  </footer>
 
-  </main>
+  <!-- Product Detail Modal -->
+  <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="modal-card" class="relative w-full max-w-2xl bg-stone-900/95 border border-yellow-500/30 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col md:flex-row transform scale-95 transition-transform duration-300">
+      
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center border border-stone-700 transition-colors cursor-pointer">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <!-- Modal Image -->
+      <div class="md:w-1/2 relative h-56 md:h-auto bg-stone-950">
+        <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent md:hidden"></div>
+      </div>
+
+      <!-- Modal Info -->
+      <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 text-[11px] tracking-widest uppercase text-yellow-400 font-semibold mb-2">
+            <span id="modal-category">TAKOYAKI</span>
+            <span>·</span>
+            <span class="text-stone-400">★ <span id="modal-rating">4.9</span> (<span id="modal-reviews">1,420</span>)</span>
+          </div>
+          <h2 id="modal-title" class="font-serif text-2xl md:text-3xl text-white font-medium mb-2">Assorted Tako</h2>
+          <div class="flex items-center gap-3 mb-3">
+            <span id="modal-price" class="font-serif text-2xl text-yellow-400 font-semibold">P120.00</span>
+            <span id="modal-original" class="text-xs text-stone-500 line-through">P129.00</span>
+            <span id="modal-discount" class="text-[10px] font-bold text-red-400 bg-red-950/60 border border-red-500/30 px-2 py-0.5 rounded-full">-9 OFF</span>
+          </div>
+          <p id="modal-desc" class="text-stone-300 text-xs leading-relaxed mb-4">
+            Freshly prepared takoyaki stuffed with premium toppings, drizzled with sweet takoyaki sauce, kewpie mayo, and bonito flakes.
+          </p>
+
+          <!-- Payment Options Selection -->
+          <div class="mb-5 border-t border-stone-800 pt-3">
+            <label class="block text-[11px] font-semibold tracking-wider text-yellow-400 uppercase mb-2">
+              Select Payment Method
+            </label>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <label class="flex items-center gap-2 p-2 rounded-xl bg-stone-800/80 border border-stone-700 cursor-pointer hover:border-yellow-500/50 transition-colors">
+                <input type="radio" name="payment" value="GCash" checked class="accent-yellow-400">
+                <span class="text-stone-200 font-medium">GCash</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-xl bg-stone-800/80 border border-stone-700 cursor-pointer hover:border-yellow-500/50 transition-colors">
+                <input type="radio" name="payment" value="Maya" class="accent-yellow-400">
+                <span class="text-stone-200 font-medium">Maya</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-xl bg-stone-800/80 border border-stone-700 cursor-pointer hover:border-yellow-500/50 transition-colors">
+                <input type="radio" name="payment" value="Bank Transfer" class="accent-yellow-400">
+                <span class="text-stone-200 font-medium">Bank Transfer</span>
+              </label>
+              <label class="flex items-center gap-2 p-2 rounded-xl bg-stone-800/80 border border-stone-700 cursor-pointer hover:border-yellow-500/50 transition-colors">
+                <input type="radio" name="payment" value="Cash on Delivery" class="accent-yellow-400">
+                <span class="text-stone-200 font-medium">COD</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Action Buttons -->
+        <div class="flex flex-col gap-2">
+          <button onclick="orderCurrentProduct('Telegram')" class="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold rounded-full py-2.5 px-4 text-xs tracking-wider uppercase transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
+            Order via Telegram
+          </button>
+          <button onclick="orderCurrentProduct('Messenger')" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full py-2.5 px-4 text-xs tracking-wider uppercase transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
+            Order via Messenger
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Notification Toast -->
-  <div id="toast" class="fixed bottom-6 right-6 bg-stone-900 border border-orange-500/40 text-stone-100 px-5 py-3 rounded-2xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
-    <div class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></div>
-    <span id="toast-msg" class="text-xs font-medium">Added to your Cart!</span>
+  <div id="toast" class="fixed bottom-6 right-6 bg-stone-900 border border-yellow-500/40 text-stone-100 px-5 py-3 rounded-2xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+    <div class="w-2 h-2 rounded-full bg-yellow-400 animate-ping"></div>
+    <span id="toast-msg" class="text-xs font-medium">Redirecting to order chat...</span>
   </div>
 
   <script>
-    // Product Dataset (Takosa Food Co.)
-const products = [
-      { title: "Assorted Tako", category: "TAKOYAKI", price: "P120.00", originalPrice: "P129.00", discount: "-9", rating: 4.9, reviews: 1420, image: "images/1.jpg" },
-      { title: "Takosa Signature", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9", rating: 4.8, reviews: 980, image: "images/2.jpg" },
-      { title: "Tako Chiszu", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9", rating: 4.7, reviews: 650, image: "images/3.jpg" },
-      { title: "Tako Classic", category: "TAKOYAKI", price: "P80.00", originalPrice: "P89.00", discount: "-9", rating: 4.9, reviews: 1120, image: "images/4.jpg" },
-      { title: "Flossy Tako", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9", rating: 4.6, reviews: 430, image: "images/5.jpg" },
-      { title: "SUMO TAKO - Katsu", category: "RICEMEAL", price: "P173.00", originalPrice: "P175.00", discount: "-2", rating: 4.9, reviews: 1590, image: "images/6.jpg" },
-      { title: "Okinawa Cheesecake", category: "CHEESECAKE MILKTEA", price: "P80.00", originalPrice: "P89.00", discount: "-9", rating: 4.8, reviews: 810, image: "images/7.jpg" },
-      { title: "Assorted Tako", category: "TAKOYAKI", price: "P120.00", originalPrice: "P129.00", discount: "-9", rating: 4.9, reviews: 2100, image: "images/1.jpg" }
-    ];   
+    // Product Dataset
+    const products = [
+      { id: 0, title: "Assorted Tako", category: "TAKOYAKI", price: "P120.00", originalPrice: "P129.00", discount: "-9 OFF", rating: 4.9, reviews: 1420, image: "images/1.jpg", description: "Our bestselling assortment of freshly cooked takoyaki with diverse savory toppings and rich fillings." },
+      { id: 1, title: "Takosa Signature", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.8, reviews: 980, image: "images/2.jpg", description: "The signature recipe crafted with authentic Japanese broth, tender octopus filling, and special house sauce." },
+      { id: 2, title: "Tako Chiszu", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.7, reviews: 650, image: "images/3.jpg", description: "Melted cheese layered over piping hot takoyaki balls for an irresistible creamy and savory bite." },
+      { id: 3, title: "Tako Classic", category: "TAKOYAKI", price: "P80.00", originalPrice: "P89.00", discount: "-9 OFF", rating: 4.9, reviews: 1120, image: "images/4.jpg", description: "Traditional Cembo-style classic takoyaki sprinkled generously with dancing bonito flakes and aonori." },
+      { id: 4, title: "Flossy Tako", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.6, reviews: 430, image: "images/5.jpg", description: "Crunchy and savory pork/chicken floss blanketed over hot takoyaki drizzled with Japanese kewpie mayo." },
+      { id: 5, title: "SUMO TAKO - Katsu", category: "RICEMEAL", price: "P173.00", originalPrice: "P175.00", discount: "-2 OFF", rating: 4.9, reviews: 1590, image: "images/6.jpg", description: "Hearty Japanese katsu rice meal paired with our signature dressings. Perfect for big appetites." },
+      { id: 6, title: "Okinawa Cheesecake", category: "MILKTEA", price: "P80.00", originalPrice: "P89.00", discount: "-9 OFF", rating: 4.8, reviews: 810, image: "images/7.jpg", description: "Rich Okinawa brown sugar milk tea topped with velvety cheesecake cream. Sweet and refreshing." },
+      { id: 7, title: "Assorted Tako", category: "TAKOYAKI", price: "P120.00", originalPrice: "P129.00", discount: "-9 OFF", rating: 4.9, reviews: 2100, image: "images/1.jpg", description: "Our bestselling assortment of freshly cooked takoyaki with diverse savory toppings and rich fillings." },
+      { id: 8, title: "Takosa Signature", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.8, reviews: 980, image: "images/2.jpg", description: "The signature recipe crafted with authentic Japanese broth, tender filling, and special house sauce." },
+      { id: 9, title: "Tako Chiszu", category: "TAKOYAKI", price: "P110.00", originalPrice: "P119.00", discount: "-9 OFF", rating: 4.7, reviews: 650, image: "images/3.jpg", description: "Melted cheese layered over piping hot takoyaki balls for an irresistible creamy and savory bite." }
+    ];
 
     const N = products.length;
-    let cardSize = 260;
-    const cardAspect = 1.2;
-    const cardRadius = 24;
-    const fanRotation = 5;
-    const fanSpread = 0.42;
-    const scaleStep = 0.22;
-    const edgeSlot = 2;
-    const ghostRange = 1.0;
-
-    // Physics state
+    let cardWidth = 300;
     let scrollPos = 0;
     let velocity = 0;
     let isDragging = false;
     let startX = 0, lastX = 0, lastTime = 0;
-    let isEntering = true;
-    let cardEntrance = new Array(N).fill(0);
+    let activeModalIndex = null;
 
     const friction = 0.92;
     const snapSpring = 0.08;
     const snapDamping = 0.75;
-    const dragSensitivity = 0.004;
+    const dragSensitivity = 0.0035;
 
-    function getCardSize() {
+    function getCardDimensions() {
       const vw = window.innerWidth;
-      if (vw < 480) return 180;
-      if (vw < 640) return 210;
-      if (vw < 768) return 240;
-      if (vw < 1024) return 260;
-      return 280;
+      if (vw < 640) return { width: 220, height: 300 };
+      if (vw < 1024) return { width: 260, height: 350 };
+      return { width: 310, height: 410 };
     }
 
     const cardsContainer = document.getElementById('cards-container');
-    const slotLeft = document.getElementById('slot-left');
-    const slotRight = document.getElementById('slot-right');
-    const slotLeftImg = document.getElementById('slot-left-img');
-    const slotRightImg = document.getElementById('slot-right-img');
-
-    // Build DOM elements for cards
     const cardEls = products.map((prod, i) => {
       const el = document.createElement('div');
-      el.className = 'absolute will-change-transform';
-      el.style.width = cardSize + 'px';
-      el.style.height = (cardSize * cardAspect) + 'px';
-      el.style.marginLeft = (-cardSize / 2) + 'px';
-      el.style.marginTop = (-(cardSize * cardAspect) / 2) + 'px';
-      el.style.left = '50%';
-      el.style.top = '50%';
-
+      el.className = 'absolute will-change-transform cursor-pointer transition-transform duration-100';
       el.innerHTML = `
-        <!-- Image Layer -->
-        <div data-image class="absolute inset-0 overflow-hidden rounded-[24px] shadow-2xl bg-stone-900 border border-stone-800 transition-opacity duration-150">
-          <img src="${prod.image}" alt="${prod.title}" class="w-full h-full object-cover filter brightness-95">
-          <div data-overlay class="absolute inset-0 bg-black opacity-0 transition-opacity duration-150"></div>
-          <div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[24px]"></div>
+        <div class="relative w-full h-full overflow-hidden rounded-[24px] shadow-2xl bg-stone-900/90 border border-yellow-500/30 group">
+          <img src="${prod.image}" alt="${prod.title}" class="w-full h-full object-cover filter brightness-95 pointer-events-none group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-left">
+            <span class="text-[10px] tracking-widest uppercase text-yellow-400 font-bold">${prod.category}</span>
+            <h3 class="font-serif text-lg text-white font-medium">${prod.title}</h3>
+            <span class="text-sm font-semibold text-yellow-300">${prod.price}</span>
+          </div>
+          <div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[24px] pointer-events-none"></div>
         </div>
-        <!-- Ghost Border Outline -->
-        <div data-ghost class="absolute inset-0 rounded-[24px] border border-stone-700/40 bg-transparent opacity-0 pointer-events-none"></div>
-        <!-- Center Accent Border -->
-        <div data-border class="absolute inset-0 rounded-[24px] border-[2.5px] border-orange-500 opacity-0 pointer-events-none shadow-[0_0_20px_rgba(249,115,22,0.3)]"></div>
-        <!-- Drop Shadow Layer -->
-        <div data-shadow class="absolute inset-0 rounded-[24px] -z-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"></div>
       `;
+      el.addEventListener('click', () => {
+        if (Math.abs(velocity) < 0.2 && !isDragging) {
+          openModal(i);
+        }
+      });
       cardsContainer.appendChild(el);
       return el;
     });
 
-    // Entrance Animation Simulation via JS
-    function startEntrance() {
-      let startTime = performance.now();
-      function animateEntrance(now) {
-        let elapsed = (now - startTime) / 1000;
-        // Center card enters first (0.3s to 1.0s), sides staggered
-        for (let i = 0; i < N; i++) {
-          let offsetFromCenter = Math.abs(i);
-          let delay = 0.3 + (offsetFromCenter === 0 ? 0 : 0.4 + (offsetFromCenter - 1) * 0.07);
-          let duration = 0.75;
-          let progress = Math.max(0, Math.min(1, (elapsed - delay) / duration));
-          // easeOutExpo
-          let eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-          cardEntrance[i] = eased;
-        }
-        if (elapsed > 1.4) {
-          isEntering = false;
-        } else {
-          requestAnimationFrame(animateEntrance);
-        }
-      }
-      requestAnimationFrame(animateEntrance);
-    }
-
-    function wrapIndex(idx) {
-      return ((idx % N) + N) % N;
-    }
-
-    let lastCentered = -1;
-
     function updateLayout() {
-      cardSize = getCardSize();
-      const spread = cardSize * fanSpread;
-      const edgeScale = Math.max(0.5, 1 - edgeSlot * scaleStep);
-      const edgeWidth = cardSize * edgeScale;
-      const edgeHeight = cardSize * cardAspect * edgeScale;
-      const edgeRadius = cardRadius * edgeScale;
-      const edgeRotation = fanRotation * edgeSlot;
-
-      // Position static edge slots
-      [slotLeft, slotRight].forEach((slot, sIdx) => {
-        const sign = sIdx === 0 ? -1 : 1;
-        slot.style.width = edgeWidth + 'px';
-        slot.style.height = edgeHeight + 'px';
-        slot.style.marginLeft = (-edgeWidth / 2) + 'px';
-        slot.style.marginTop = (-edgeHeight / 2) + 'px';
-        slot.style.transform = `translate3d(${sign * edgeSlot * spread}px, 0, 0) rotate(${sign * edgeRotation}deg)`;
-        slot.style.borderRadius = edgeRadius + 'px';
-      });
-
-      // Swap slot images based on floor/ceil asymmetric boundaries
-      const leftIdx = wrapIndex(Math.floor(scrollPos) - edgeSlot);
-      const rightIdx = wrapIndex(Math.ceil(scrollPos) + edgeSlot);
-      slotLeftImg.src = products[leftIdx].image;
-      slotRightImg.src = products[rightIdx].image;
-
-      // Update animated cards
-      const currentCentered = wrapIndex(Math.round(scrollPos));
-      if (currentCentered !== lastCentered) {
-        lastCentered = currentCentered;
-        updateInfoBlock(currentCentered);
-      }
+      const dims = getCardDimensions();
+      cardWidth = dims.width;
+      const cardHeight = dims.height;
+      const gap = 24;
+      const stride = cardWidth + gap;
 
       for (let i = 0; i < N; i++) {
         const card = cardEls[i];
-        card.style.width = cardSize + 'px';
-        card.style.height = (cardSize * cardAspect) + 'px';
-        card.style.marginLeft = (-cardSize / 2) + 'px';
-        card.style.marginTop = (-(cardSize * cardAspect) / 2) + 'px';
+        card.style.width = cardWidth + 'px';
+        card.style.height = cardHeight + 'px';
+        card.style.marginLeft = (-cardWidth / 2) + 'px';
+        card.style.marginTop = (-cardHeight / 2) + 'px';
 
         let offset = i - scrollPos;
         while (offset > N / 2) offset -= N;
         while (offset < -N / 2) offset += N;
+
         const absOffset = Math.abs(offset);
+        const tx = offset * stride;
+        const rotateY = -offset * 12;
+        const translateZ = Math.max(0, 200 - absOffset * 120);
+        const scale = Math.max(0.65, 1 - absOffset * 0.15);
 
-        const entrance = cardEntrance[i] ?? (isEntering ? 0 : 1);
-        const tx = offset * spread * entrance;
-        const rotation = offset * fanRotation * entrance;
-        const targetScale = Math.max(0.4, 1 - absOffset * scaleStep);
-        const scale = 0.3 + (targetScale - 0.3) * entrance;
-
-        card.style.transform = `translate3d(${tx}px, 0px, 0) rotate(${rotation}deg) scale(${scale})`;
-
-        const isGhost = !isEntering && absOffset >= edgeSlot;
-        const ghostOpacity = isGhost ? Math.max(0, 1 - (absOffset - edgeSlot) / ghostRange) : 1;
-        
-        // Visibility cutoff during load vs runtime
-        if (isEntering && absOffset > edgeSlot) {
-          card.style.opacity = '0';
-        } else if (!isEntering && absOffset > edgeSlot + ghostRange) {
-          card.style.opacity = '0';
-        } else {
-          card.style.opacity = `${ghostOpacity * entrance}`;
-        }
-
-        card.style.zIndex = isGhost ? 0 : Math.round((edgeSlot + 1 - absOffset) * 10);
-
-        // Sublayers
-        const imgLayer = card.querySelector('[data-image]');
-        const ghostLayer = card.querySelector('[data-ghost]');
-        const borderLayer = card.querySelector('[data-border]');
-        const shadowLayer = card.querySelector('[data-shadow]');
-        const overlayLayer = card.querySelector('[data-overlay]');
-
-        imgLayer.style.opacity = isGhost ? '0' : '1';
-        shadowLayer.style.opacity = isGhost ? '0' : '1';
-        ghostLayer.style.opacity = isGhost ? `${ghostOpacity}` : '0';
-
-        const maxOverlay = 0.45;
-        const overlayOp = Math.min(maxOverlay, (absOffset / edgeSlot) * maxOverlay);
-        overlayLayer.style.opacity = isGhost ? '0' : `${overlayOp}`;
-
-        const borderOpacity = isGhost ? 0 : Math.max(0, 1 - absOffset * 2.5);
-        borderLayer.style.opacity = `${borderOpacity}`;
+        card.style.transform = `translate3d(${tx}px, 0px, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
+        card.style.opacity = absOffset > 3.2 ? '0' : '1';
+        card.style.zIndex = Math.round((4 - absOffset) * 10);
       }
     }
 
-    function updateInfoBlock(idx) {
-      const p = products[idx];
-      document.getElementById('info-category').textContent = p.category;
-      document.getElementById('info-rating').textContent = p.rating;
-      document.getElementById('info-reviews').textContent = p.reviews.toLocaleString();
-      document.getElementById('info-title').textContent = p.title;
-      document.getElementById('info-price').textContent = p.price;
-      document.getElementById('info-original').textContent = p.originalPrice;
-      document.getElementById('info-discount').textContent = p.discount + ' OFF';
-    }
-
-    // Animation & Physics Loop
     function physicsLoop() {
       if (!isDragging) {
         scrollPos += velocity;
@@ -361,22 +340,16 @@ const products = [
 
         if (Math.abs(velocity) < 0.0005) {
           velocity = 0;
-          const nearest = Math.round(scrollPos);
-          if (Math.abs(nearest - scrollPos) < 0.01) {
-            scrollPos = nearest;
-          }
+          scrollPos = Math.round(scrollPos);
         }
       }
 
-      // Normalize scrollPos within [0, N)
       scrollPos = ((scrollPos % N) + N) % N;
-
       updateLayout();
       requestAnimationFrame(physicsLoop);
     }
 
-    // Mouse & Touch Drag Handlers
-    const viewport = document.getElementById('fan-viewport');
+    const viewport = document.getElementById('carousel-viewport');
 
     function onPointerDown(e) {
       isDragging = true;
@@ -403,7 +376,7 @@ const products = [
     function onPointerUp() {
       if (!isDragging) return;
       isDragging = false;
-      velocity *= 1.1; // release boost
+      velocity *= 1.1;
     }
 
     viewport.addEventListener('mousedown', onPointerDown);
@@ -414,54 +387,91 @@ const products = [
     window.addEventListener('touchmove', onPointerMove, { passive: true });
     window.addEventListener('touchend', onPointerUp);
 
-    // Wheel Handler
     viewport.addEventListener('wheel', (e) => {
-      const absX = Math.abs(e.deltaX);
-      const absY = Math.abs(e.deltaY);
-      const delta = absX > absY ? e.deltaX : e.deltaY;
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       if (Math.abs(delta) > 2) {
         e.preventDefault();
-        scrollPos += delta * 0.003;
-        velocity = delta * 0.001;
+        scrollPos += delta * 0.0025;
+        velocity = delta * 0.0008;
       }
     }, { passive: false });
 
-    // Actions
-function addToBag() {
-      // Get the currently centered product item
-      const currentIdx = wrapIndex(Math.round(scrollPos));
-      const p = products[currentIdx];
-      
-      // Create the order text message
-      const orderMessage = `Hello Takosa Food Co.! I would like to order:\n- Item: ${p.title}\n- Category: ${p.category}\n- Price: ${p.price}`;
+    function openModal(idx) {
+      activeModalIndex = idx;
+      const p = products[idx];
+      document.getElementById('modal-img').src = p.image;
+      document.getElementById('modal-category').textContent = p.category;
+      document.getElementById('modal-rating').textContent = p.rating;
+      document.getElementById('modal-reviews').textContent = p.reviews.toLocaleString();
+      document.getElementById('modal-title').textContent = p.title;
+      document.getElementById('modal-price').textContent = p.price;
+      document.getElementById('modal-original').textContent = p.originalPrice;
+      document.getElementById('modal-discount').textContent = p.discount;
+      document.getElementById('modal-desc').textContent = p.description;
+
+      const modal = document.getElementById('product-modal');
+      const card = document.getElementById('modal-card');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('product-modal');
+      const card = document.getElementById('modal-card');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-100');
+      card.classList.add('scale-95');
+    }
+
+    function orderCurrentProduct(platform) {
+      if (activeModalIndex === null) return;
+      const p = products[activeModalIndex];
+      const selectedPayment = document.querySelector('input[name="payment"]:checked')?.value || "GCash";
+      const orderMessage = `Hello Takosa Food Co.! I would like to order:\n\nItem: ${p.title}\nCategory: ${p.category}\nPrice: ${p.price}\nPayment Method: ${selectedPayment}`;
       const encodedMsg = encodeURIComponent(orderMessage);
 
-      // --- CHOOSE YOUR PLATFORM BELOW ---
+      if (platform === 'Telegram') {
+        window.open(`https://t.me/czessh20?text=${encodedMsg}`, '_blank');
+      } else {
+        window.open(`https://m.me/285742292084459`, '_blank');
+      }
+    }
 
-      // Option A: Telegram (Replace 'your_telegram_username' with your actual Telegram handle)
-      const telegramUser = "czessh20"; 
-      window.location.href = `https://t.me/czessh20?text=${encodedMsg}`;
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      const userOrder = document.getElementById('order-input').value;
+      if (!userOrder.trim()) return;
+      const encodedMsg = encodeURIComponent(`Hello Takosa Food Co.! I would like to order: ${userOrder}`);
+      showToast("Redirecting to Telegram to complete your order...");
+      setTimeout(() => {
+        window.open(`https://t.me/czessh20?text=${encodedMsg}`, '_blank');
+      }, 800);
+    }
 
-      // Option B: Facebook Messenger (Uncomment the line below and put your FB page name instead)
-      // window.location.href = `https://m.me/285742292084459`;
-    }  
+    function inquireOpportunity(type) {
+      const msg = encodeURIComponent(`Hello Takosa Food Co.! I am interested in inquiring about your Business Opportunity: ${type}.`);
+      window.open(`https://t.me/czessh20?text=${msg}`, '_blank');
+    }
 
-function viewDetails() {
-      const pageUrl = "https://www.facebook.com/285742292084459";
-      window.open(pageUrl, '_blank');
-    }    // Initialize
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 4000);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      gsap.fromTo("[data-reveal]", 
+        { opacity: 0, y: 30, scale: 0.94, filter: 'blur(6px)' },
+        { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1, stagger: 0.12, ease: "power4.out", delay: 0.3 }
+      );
+    });
+
     window.addEventListener('resize', updateLayout);
-    startEntrance();
     requestAnimationFrame(physicsLoop);
   </script>
-<!-- Business Opportunities Banner -->
-<div style="background: rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 16px 24px; text-align: center; margin-top: 24px; border-radius: 12px; backdrop-filter: blur(10px);">
-  <p style="color: #f97316; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px;">
-    BUSINESS OPPORTUNITIES
-  </p>
-  <p style="color: #e5e7eb; font-size: 0.95rem; font-weight: 400; max-width: 600px; margin: 0 auto;">
-    We are also offering <strong style="color: #ffffff;">Online Seminar, Modules, and Business Packages</strong> for aspiring business owners!
-  </p>
-</div>
 </body>
 </html>
